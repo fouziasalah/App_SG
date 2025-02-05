@@ -1,2 +1,3 @@
-server/node_modules/
-App_societes_gestion/node_modules/
+# server/node_modules/
+# App_societes_gestion/node_modules/
+node_modules/
