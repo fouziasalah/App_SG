@@ -1,4 +1,4 @@
-// models/Scpi.js
+
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');  
 const SocieteDeGestion = require('./SocieteDeGestion');
@@ -43,12 +43,14 @@ const Scpi = sequelize.define('Scpi', {
   timestamps: false
 });
 
-// Définir l'association dans le modèle Scpi
-Scpi.associate = function(models) {
-  Scpi.belongsTo(models.SocieteDeGestion, { foreignKey: 'idSocieteGest', as: 'societe' });
- 
-  
-
+// Scpi.associate = function(models) {
+//   Scpi.belongsTo(models.SocieteDeGestion, { foreignKey: 'idSocieteGest', as: 'societe' });
+// };
+Scpi.associate = function (models) {
+  Scpi.belongsTo(models.SocieteDeGestion, {
+      foreignKey: "idSocieteGest",
+      as: "societe"
+  });
 };
 
 module.exports = Scpi;

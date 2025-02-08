@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 const ListSG = ({ onEdit }) => {
   const [societes, setSocietes] = useState([]);
 
@@ -13,14 +12,14 @@ const ListSG = ({ onEdit }) => {
   const handleDelete = async (idsocietgest) => {
     if (window.confirm("Confirmer la suppression ?")) {
       await axios.delete(`http://localhost:5000/societes-de-gestion/${idsocietgest}`);
-      setSocietes(societes.filter(s => s.idsocietgest !== id));
+      setSocietes(societes.filter(s => s.idsocietgest !== idsocietgest));
     }
   };
 
   return (
     <div>
       <h2>Sociétés de Gestion</h2>
-      <button onClick={() => onEdit(null)}>➕ Ajouter</button>
+      <button onClick={() => onEdit(null)}> Ajouter</button>
       <table border="1">
         <thead>
           <tr>

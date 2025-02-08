@@ -1,8 +1,29 @@
-# React + Vite
+## Installation du projet
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Clonez le dépôt :
+   
+2. npm install (Frontend+backend):
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+/*******************************Les technologies utilisées
+
+-Frontend (React) : react@18.3.1
+-Backend (Node.js) :v22.13.0
+-PostgreSQL : 13
+-Passport:  passport@0.7.0
+-Express : express@4.21.2
+-Sequelize (ORM) : sequelize@6.37.5
+-Axios: axios@1.7.9
+
+
+/*************************************Base de données*****************
+    "username": "postgres",
+    "password": "postgres",
+    "database": "postgres",
+    "host": "localhost",
+
+/**************************************** Serveurs
+Backend:http://localhost:5000
+Frontend :http://localhost:5173/
+
+  

@@ -20,23 +20,27 @@ const ListScpis = () => {
   const handleDelete = async (idScpi) => {
     const confirmDelete = window.confirm('Êtes-vous sûr de vouloir supprimer cette SCPI ?');
     if (!confirmDelete) return;
-
+  
+    setScpis(scpis.filter(scpi => scpi.idScpi !== idScpi));
+  
     try {
       const response = await fetch(`http://localhost:5000/DeleteScpi/${idScpi}`, {
         method: 'DELETE',
       });
-
+  
       if (response.ok) {
         alert('SCPI supprimée avec succès');
-        setScpis(scpis.filter(scpi => scpi.id !== idScpi));
       } else {
         alert('Erreur lors de la suppression');
+        setScpis(prevScpis => [...prevScpis, scpis.find(scpi => scpi.idScpi === idScpi)]);
       }
     } catch (error) {
       console.error('Erreur lors de la suppression de la SCPI', error);
       alert('Une erreur est survenue. Veuillez réessayer.');
+      setScpis(prevScpis => [...prevScpis, scpis.find(scpi => scpi.idScpi === idScpi)]);
     }
   };
+  
 
   return (
     <div className="container mt-5">
@@ -50,17 +54,21 @@ const ListScpis = () => {
             <th>Nom SCPI</th>
             <th>Type</th>
             <th>Catégorie</th>
+            <th>Société de gestion</th>
             <th>Capitalisation</th>
             <th>Date de création</th>
             <th>Actions</th>
           </tr>
         </thead>
+        
+
         <tbody>
           {scpis.map(scpi => (
             <tr key={scpi.idscpi}>
               <td>{scpi.nomscpi}</td>
               <td>{scpi.typescpi}</td>
               <td>{scpi.categoriecpi}</td>
+              <td>{scpi.idSocieteGest}</td>
               <td>{scpi.capitalisation}</td>
               <td>{new Date(scpi.date_creation).toLocaleDateString()}</td>
               <td>

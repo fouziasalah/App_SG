@@ -40,4 +40,13 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.SocieteGestion = require("./SocieteDeGestion")(sequelize, Sequelize.DataTypes);
+db.Scpi = require("./Scpi")(sequelize, Sequelize.DataTypes);
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+      db[modelName].associate(db);
+  }
+});
+SocieteDeGestion.associate(models);
+Scpi.associate(models);
 module.exports = db;

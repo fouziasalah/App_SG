@@ -43,10 +43,17 @@ const SocieteDeGestion = sequelize.define('SocieteDeGestion', {
 });
 
 
-SocieteDeGestion.associate = function(models) {
-  SocieteDeGestion.hasMany(models.Scpi, { foreignKey: 'idSocieteGest' , as: 'scpis'});
+// SocieteDeGestion.associate = function(models) {
+// SocieteDeGestion.hasMany(models.Scpi, { foreignKey: 'idSocieteGest' , as: 'scpis'});
 
- 
+// };
+
+
+SocieteDeGestion.associate = function (models) {
+  SocieteDeGestion.hasMany(models.Scpi, {
+      foreignKey: "idSocieteGest",  
+      as: "scpis"
+  });
 };
 
 module.exports = SocieteDeGestion;

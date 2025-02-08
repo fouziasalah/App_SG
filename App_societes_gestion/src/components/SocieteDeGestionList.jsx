@@ -18,15 +18,14 @@ const SocieteDeGestionList = () => {
     };
     fetchSocietes();
   }, []);
-
   return (
     <div className="container my-4">
-      <h2 className="mb-4">Les sociétés de Gestion</h2>
+      <h1 className="mb-4">Les sociétés de Gestion</h1>
       {error && <div className="alert alert-danger">{error}</div>}
       <div className="row">
         {societes.map(societe => (
           <div className="col-md-4 mb-4" key={societe.idsocietgest}>
-            <Card className="h-100 shadow-sm">
+            <Card className="h-100 shadow-lg rounded-3">
               <Card.Body className="d-flex flex-column">
                 <Card.Title>{societe.nomsocietgest}</Card.Title>
                 <Card.Text className="flex-grow-1">
@@ -36,7 +35,7 @@ const SocieteDeGestionList = () => {
                   }
                 </Card.Text>
                
-                <Button className="mt-auto" href={`/societes-de-gestion/${societe.idsocietgest}`} variant="primary">
+                <Button className="mt-auto" href={`/societe-de-gestion-scpis/${societe.idsocietgest}`} variant="primary">
                   Voir plus
                 </Button>
               </Card.Body>
@@ -46,6 +45,7 @@ const SocieteDeGestionList = () => {
       </div>
     </div>
   );
+  
 };
 
 export default SocieteDeGestionList;

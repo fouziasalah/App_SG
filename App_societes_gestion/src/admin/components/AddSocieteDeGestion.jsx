@@ -1,6 +1,6 @@
-// src/admin/AddSocieteForm.jsx
-import React, { useState } from 'react';
 
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const AddSocieteDeGestion = () => {
   const [formData, setFormData] = useState({
     nomsocietgest: '',
@@ -11,7 +11,7 @@ const AddSocieteDeGestion = () => {
     localisation: '',
     description: ''
   });
-
+  const navigate = useNavigate(); 
   //*changements dans le formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,12 +23,13 @@ const AddSocieteDeGestion = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const token = localStorage.getItem('token');
     try {
       const response = await fetch('http://localhost:5000/societes-de-gestion', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(formData)
       });
@@ -44,15 +45,17 @@ const AddSocieteDeGestion = () => {
           localisation: '',
           description: ''
         });
-      } else {
-        const error = await response.json();
-        alert(error.error);
+         navigate('/admin');
+        } else {
+          const error = await response.json();
+          alert(error.error);
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'ajout de SG:', error);
+        alert('Une erreur s\'est produite. Veuillez réessayer.');
       }
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout de SG:', error);
-      alert('Une erreur Veuillez réessayer!!!!!!!!.');
-    }
-  };
+    };
+     
 
   return (
     <div className="container mt-5">
